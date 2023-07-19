@@ -1,0 +1,229 @@
+:root {
+  color: var(--color-dominant-font);
+  background-color: var(--color-dominant);
+  --color-dominant: #002A5C;
+  --color-dominant-font:  #F9F9F9;
+  --color-secondary: #AFAFAF;
+  --color-secondary-font: #000000;
+  --color-action: #FFD700;
+  --color-action-font:  #333333;
+}
+html{
+  margin: 0;
+  padding: 0;
+}
+form{
+  background-color: var(--color-secondary);
+  color: var(--color-secondary-font);
+}
+.link-action button{
+  border-radius: 8px;
+}
+button{
+  padding: 8px 18px;
+  cursor: pointer;
+  border: none;
+  background-color: var(--color-action);
+  color: var(--color-action-font);
+  z-index: 20;
+  border-radius: 5px;
+}
+*{
+  padding: 0;
+  margin: 0;
+  color: var(--color-dominant-font);
+  /* border: 2px solid orange; */
+}
+a{
+  margin: 0;
+  padding: 0;
+}
+h2 span{
+  color: var(--color-action);
+}
+/* NavBar */
+
+
+nav{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.nav-items ul{
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: row;
+}
+@media screen and (max-width: 800px) {
+  .nav-item{
+    display: none;
+    visibility: hidden;
+    opacity: 0;
+  }
+  .visible{
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+ul .nav-item{
+  color: var(--color-dominant-font);
+  list-style-type: none;
+  margin-right: 3rem;
+  text-decoration: none;
+  font-size: 25px;
+}
+ul .nav-item:hover{
+  color: var(--color-action);
+}
+label input{
+  color: var(--color-secondary-font) !important;
+}
+/* background-image Home */
+.annex-image{
+  background-image: url('./pic.jpg');
+  background-size: cover;
+  width: 100dvw;
+  height: 90dvh;
+}
+/* services */
+.annex-details{
+  margin-top: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.our-services{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 85dvw;
+  box-shadow: 0 0 10px 2px var(--color-secondary);
+}
+.our-services h2{
+  margin: 1rem 0;
+}
+.services{
+  flex-wrap: wrap;
+}
+.service{
+  border-radius: 16px;
+  height: 200px;
+  width: 245px;
+  cursor: pointer;
+}
+
+/* Event screen */
+
+.items{
+  height: 100%;
+  display: flex;
+  align-items: flex-start; 
+  justify-content: center; 
+}
+
+
+@media screen and (max-width: 1100px) {
+  .items{
+    flex-direction: column;
+  }
+}
+.choose{
+  border-radius: 20px;
+}
+
+select{
+  background-color: whitesmoke;
+  color: black;
+  padding: 0 1rem;
+}
+option{
+  color: #000;
+}
+
+
+
+
+
+
+
+
+
+/* main */
+.main{
+  display: flex;  
+}
+main{
+  min-height: 78dvh;
+}
+
+.card{
+  background-color: #f5f5f5;
+  color: var(--color-secondary-font);
+  margin: .4rem;
+  overflow: hidden;
+}
+.card.rooms{
+  border-radius: 19px;
+  width:  305px;
+  min-height: 380px;
+  margin: 1.5rem;
+}
+.card.roomss{
+  width:  240px;
+  border-radius: 15px;
+}
+@media screen and (max-width: 500px) {
+  .card.rooms{
+    margin: 1rem 0;
+  }
+}
+.card:hover{
+  transform: translateY(-0.7rem);
+  transition: 1s all;
+}
+.services-details{
+  margin-left: .5em;
+}
+.services-details h4{
+  font-size: larger;
+}
+.services-details, .services-details div p{
+  color: #000 !important;
+}
+.category{
+  display: flex;
+  flex-direction: column;
+}
+.price{
+  color:  blue;
+}
+.category div{
+  margin-top: .5rem;
+}
+
+
+
+
+
+
+
+
+
+
+
+/* footer */
+.footer{
+  margin: 0;
+  min-height: 6.3dvh;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+footer{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
