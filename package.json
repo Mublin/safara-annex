@@ -1,0 +1,21 @@
+{
+  "name": "safara-annex",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "cd bankend && npm install && cd ../frontend && npm install && npm run build",
+    "start": "node backend/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mublin/safara-annex.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Mublin/safara-annex/issues"
+  },
+  "homepage": "https://github.com/Mublin/safara-annex#readme"
+}
