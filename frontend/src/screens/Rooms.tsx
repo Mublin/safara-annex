@@ -64,15 +64,15 @@ const RoomsScreen = () => {
         </div>
         {error ? <h2>{error}</h2> : (
             <div style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center'}}>
-            {rooms.map(room => <div key={room.id} className="card roomss">
+            {rooms.map(room => <div key={room.id} className={room.availability ? 'card roomss' : 'card roomss availabl'}>
                         <img src={reactSvg} loading='lazy' alt="" style={{ width: '100%', height: '60%'}}  />
                         <div className="services-details" style={{ display: 'flex', alignItems: 'center' , justifyContent: 'center', flexDirection: 'column'}}>
                             <h2 style={{color: 'black'}}>{room.location}</h2>
                             <p style={{color: 'black'}}>Availability: {room.availability ? 'Available' : 'Unavailable'}</p>
                             <p style={{color: 'black'}}>Room Number : {room.number}</p>
-                            <p>Size: {room.size}</p>
+                            <p style={{color: 'black'}}>Size: {room.size}</p>
                             <p></p>
-                            <button>Book Hall now</button>
+                            <button>Book room now</button>
                         </div>
                     </div>)}
             </div>

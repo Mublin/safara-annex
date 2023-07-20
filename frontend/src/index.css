@@ -114,6 +114,9 @@ label input{
   width: 245px;
   cursor: pointer;
 }
+.availabl{
+  background-color: red !important;
+}
 
 /* Event screen */
 
