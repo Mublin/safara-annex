@@ -2,7 +2,7 @@ import React, {ChangeEvent, useEffect, useState} from 'react'
 import axios from 'axios'
 import reactSvg from '../react.svg'
 import { Room } from './RoomList'
-import { useLocation, useNavigate, useParams } from 'react-router-dom'
+import { Link, useLocation, useNavigate, useParams } from 'react-router-dom'
 type filterItem = {
     available?: string
     located?: string
@@ -71,8 +71,8 @@ const RoomsScreen = () => {
                             <p style={{color: 'black'}}>Availability: {room.availability ? 'Available' : 'Unavailable'}</p>
                             <p style={{color: 'black'}}>Room Number : {room.number}</p>
                             <p style={{color: 'black'}}>Size: {room.size}</p>
-                            <p></p>
-                            <button>Book room now</button>
+                            <h3 className='price'>Price: NGN{room.price}</h3>
+                            <button disabled={room.availability ? false : true} className={room.availability? '' : 'grey-button'} onClick={()=> navigate('/')} >Book room now</button>
                         </div>
                     </div>)}
             </div>

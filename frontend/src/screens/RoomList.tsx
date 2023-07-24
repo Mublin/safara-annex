@@ -11,7 +11,8 @@ export type Room ={
     availability: string,
     number: number,
     size: string,
-    location: string
+    location: string,
+    price: number
 }
 const RoomListScreen = () => {
   return (
@@ -24,8 +25,8 @@ const RoomListScreen = () => {
                     <div className="card rooms">
                         <img src={OIP1} loading='lazy' alt="" width='100%' height='100%'  style={{height: '60%', width: '100%'}} />
                         <div className="services-details">
-                            <h4 style={{color: '#000000', fontFamily: 'Montserrat'}}>Extra Small</h4>
-                            <div className="category">
+                            <h4 style={{color: '#000000', fontFamily: 'Montserrat'}}>All Rooms</h4>
+                            {/* <div className="category">
                                 <div>
                                     <p style={{color: '#000000', fontFamily: 'Montserrat'}}>Cozy living space, compact layout</p>
                                     <p style={{color: '#000000', fontFamily: 'Montserrat'}}>Perferct for solo travelers or couples</p>
@@ -36,7 +37,7 @@ const RoomListScreen = () => {
                                 <div>
                                     <h2 className='price'>NGN12000</h2>
                                 </div>
-                            </div>
+                            </div> */}
                         </div>
                     </div>
             </Link>
@@ -54,7 +55,7 @@ const RoomListScreen = () => {
                                     <p>Features: Air conditioning, television, private bathroom, e.t.c</p>
                                 </div>
                                 <div>
-                                    <h2 className='price'>NGN12000</h2>
+                                    <h2 className='price'>NGN15000</h2>
                                 </div>
                             </div>
                         </div>
@@ -74,7 +75,7 @@ const RoomListScreen = () => {
                                     <p>Features: Air conditioning, television, private bathroom, e.t.c</p>
                                 </div>
                                 <div>
-                                    <h2 className='price'>NGN16000</h2>
+                                    <h2 className='price'>NGN18000</h2>
                                 </div>
                             </div>
                             
@@ -115,7 +116,7 @@ const RoomListScreen = () => {
                                     <p>Features: Fully furnished, air conditioning, television, multiple bathrooms, spacious common areas, e.t.c</p>
                                 </div>
                                 <div>
-                                    <h2 className='price'>NGN22000</h2>
+                                    <h2 className='price'>NGN23000</h2>
                                 </div>
                             </div>
                         </div>

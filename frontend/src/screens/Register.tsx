@@ -9,9 +9,10 @@ const RegisterScreen = () => {
   const [username, setUsername] = useState('')
   const [name, setName] = useState('')
   const [password, setPassword] = useState('')
-  const submitHandler =  (e: MouseEvent<HTMLFormElement>)=>{
+  const [email, setEmail] = useState('')
+  const submitHandler = async (e: MouseEvent<HTMLFormElement>)=>{
     e.preventDefault();
-    registerHandler(name, username.toLowerCase(), password);
+    await registerHandler(name, username.toLowerCase(), password, email.toLowerCase());
   }
 
   useEffect(()=>{
@@ -28,6 +29,9 @@ const RegisterScreen = () => {
       <form onSubmit={submitHandler} style={{marginTop:'4rem', minHeight: "85dvh", display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', width: '100dvw',}}>
       <label htmlFor="username"> name:
           <input type="text" value={name} required minLength={3} onChange={(e: ChangeEvent<HTMLInputElement>)=> setName(e.target.value)} />
+        </label>
+        <label htmlFor="emai"> E-mail:
+          <input type="email" value={email} required minLength={3} onChange={(e: ChangeEvent<HTMLInputElement>)=> setEmail(e.target.value)} />
         </label>
         <label htmlFor="username"> username:
           <input type="text" value={username} required minLength={3} onChange={(e: ChangeEvent<HTMLInputElement>)=> setUsername(e.target.value)} />

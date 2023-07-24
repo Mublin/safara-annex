@@ -1,6 +1,7 @@
 import { useReducer, createContext, ReactElement } from "react"
 import { Users, usersDatabase } from "./data"
 import { useNavigate } from "react-router-dom"
+import axios from "axios"
 
 export type User = {
     name: string
@@ -61,24 +62,25 @@ const useGlobalStateHook = (initState : InitialStateType) =>{
     const navigate = useNavigate()
     const [state, dispatch] = useReducer(reducer, initState)
 
-    const loginHandler = (username: string, password: string): void =>{
+    const loginHandler = async (username: string, password: string): Promise<void> =>{
         console.log(username, password)
         try {
             dispatch({type: REDUCER_ACTION_TYPE.LogInRequest, payload: undefined})
-            const user: Users | undefined = usersDatabase.find(x=> x.user === username)
-            if (user && user.password === password) {
+            const {data} = await axios.post(`http://localhost:4500/api/users/signin`, {
+                username,
+                password,
+            })
+            if (data) {
                 dispatch({
                     type: REDUCER_ACTION_TYPE.LogIn,
                     payload: {
-                        name: user.name,
-                        user: user.user,
-                        id: user.id
+                        name: data.name,
+                        user: data.user,
                     }
                 })
-                navigate('/')
-            } else{
-                throw Error("invalid detail")
+                navigate('/') 
             }
+               
         } catch (error) {
             dispatch({
                 type: REDUCER_ACTION_TYPE.LogInError,
@@ -90,26 +92,30 @@ const useGlobalStateHook = (initState : InitialStateType) =>{
 
 
 
-    const registerHandler = (name:string, username: string, password: string): void =>{
-        console.log(name, username, password)
+    const registerHandler = async (name:string, username: string, password: string, email: string): Promise<void> =>{
+        console.log(name, username, password, email)
         try {
-            let id = Math.random().toFixed(3).toString()
             dispatch({type: REDUCER_ACTION_TYPE.RegisterRequest, payload: undefined})
-            usersDatabase.push({
-                id,
+            const {data} = await axios.post(`http://localhost:4500/api/users/register`, {
                 name,
-                user: username,
-                password
-            })
+                username,
+                password,
+                email
+            }
+            )
+
+
+
+            if (data) {
                 dispatch({
                     type: REDUCER_ACTION_TYPE.LogIn,
                     payload: {
                         name,
                         user: username,
-                        id 
                     }
                 })
-                navigate('/')
+                navigate('/')   
+            }
             
         } catch (error) {
             dispatch({
@@ -141,8 +147,8 @@ const useGlobalStateHook = (initState : InitialStateType) =>{
 type useGlobalStateHookType = ReturnType <typeof useGlobalStateHook>
 const initialContextState :useGlobalStateHookType = {
     state: initialState,
-    loginHandler:  (username: string, password: string) => {},
-    registerHandler:  (name: string, username: string, password: string) => {},
+    loginHandler: async (username: string, password: string) => {},
+    registerHandler: async (name: string, username: string, password: string, email: string) => {},
     logOutHandler: () => {},
 }
 

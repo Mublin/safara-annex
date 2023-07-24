@@ -2,6 +2,7 @@ const express = require('express')
 const cors = require('cors')
 const dotenv =require('dotenv').config()
 const knex = require('knex')
+const path = require('path')
 const userRoute = require('./routes/userRoute')
 const roomRoute = require('./routes/roomRoute')
 const db = knex({
@@ -19,11 +20,19 @@ const db = knex({
 const app = express()
 app.use(cors())
 app.use(express.json())
+app.use(express.urlencoded({extended: false}))
 
 
-// app.use(`/api/users`, userRoute)
+
+
+app.use(`/api/users`, userRoute)
 app.use(`/api/rooms`, roomRoute)
 
-app.listen(process.env.PORT, ()=>{
-    console.log(`app is working at port ${process.env.PORT}`)
+// app.use(express.static(path.join(__dirname, '../frontend/dist')))
+// app.get('*', (req,res)=>
+//     res.sendFile(path.join(__dirname, '../frontend/dist/index.html'))
+// )
+const port = process.env.PORT || 5773
+app.listen(port, ()=>{
+    console.log(`app is working at port ${port} siu`)
 })

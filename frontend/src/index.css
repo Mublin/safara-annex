@@ -28,6 +28,10 @@ button{
   z-index: 20;
   border-radius: 5px;
 }
+.grey-button{
+  background-color: grey;
+  color: white;
+}
 *{
   padding: 0;
   margin: 0;
