@@ -5,8 +5,9 @@ import axios from "axios"
 
 export type User = {
     name: string
-    user: string
-    id: string
+    username: string
+    email: string
+    token: string
 }
 type InitialStateType = {
     user: null | User;
@@ -15,7 +16,7 @@ type InitialStateType = {
     rooms: any[];
 }
 export const initialState : InitialStateType = {
-    user : null,
+    user :  localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo') || '{}') : null,
     loading: false,
     error: null,
     rooms : []
@@ -63,21 +64,25 @@ const useGlobalStateHook = (initState : InitialStateType) =>{
     const [state, dispatch] = useReducer(reducer, initState)
 
     const loginHandler = async (username: string, password: string): Promise<void> =>{
-        console.log(username, password)
+        // console.log(username, password)
         try {
             dispatch({type: REDUCER_ACTION_TYPE.LogInRequest, payload: undefined})
             const {data} = await axios.post(`http://localhost:4500/api/users/signin`, {
                 username,
-                password,
+                password
             })
             if (data) {
+                const {name, username, token, email} = data
                 dispatch({
                     type: REDUCER_ACTION_TYPE.LogIn,
                     payload: {
-                        name: data.name,
-                        user: data.user,
+                        name,
+                        username,
+                        token,
+                        email
                     }
                 })
+                localStorage.setItem('userInfo', JSON.stringify(data))
                 navigate('/') 
             }
                
@@ -107,13 +112,17 @@ const useGlobalStateHook = (initState : InitialStateType) =>{
 
 
             if (data) {
+                const {name, username, token, email} = data
                 dispatch({
                     type: REDUCER_ACTION_TYPE.LogIn,
                     payload: {
                         name,
-                        user: username,
+                        username,
+                        token,
+                        email
                     }
                 })
+                localStorage.setItem('userInfo', JSON.stringify(data))
                 navigate('/')   
             }
             
@@ -132,6 +141,7 @@ const useGlobalStateHook = (initState : InitialStateType) =>{
                     type: REDUCER_ACTION_TYPE.LogOut,
                     payload: null
                 })
+            localStorage.removeItem('userInfo');
             
         } catch (error) {
             alert(error)

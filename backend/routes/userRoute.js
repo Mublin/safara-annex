@@ -1,6 +1,7 @@
 const express = require('express')
 const knex = require('knex')
 const bcrypt = require('bcrypt')
+const { generateToken } = require('../utils')
 const db = knex({
     client: 'pg',
     connection: {
@@ -19,7 +20,8 @@ const crackdb = db('crack')
 
 
 userRoute.post('/register', async (req, res)=>{
-    console.log(req.body)
+    // console.log(req.body)
+    // console.log(generateToken("j"))
     const {username, name, email, password} = req.body;
     db.transaction(trx=>{
         trx('users').insert({
@@ -32,10 +34,16 @@ userRoute.post('/register', async (req, res)=>{
                 email,
                 hash: bcrypt.hashSync(password, 10)
             }).then(user =>{
-                res.status(201).send({
+                console.log(email)
+                return res.status(201).send({
                     email,
                     username,
-                    name
+                    name,
+                    token: generateToken({
+                        name,
+                        username,
+                        email
+                    })
                 })
             })
             .then(trx.commit)
@@ -48,30 +56,40 @@ userRoute.post('/register', async (req, res)=>{
 
 
 
-userRoute.post('/signin', (req, res)=>{
+userRoute.post('/signin', async (req, res)=>{
     const {username, password} = req.body;
-    userdb.select('*').where('username', '=', username)
-    .then(data=>{
-        if (data.length) {
-            crackdb.select('hash').where('username', '=', username)
-            .then(dbPassword=>{
-                console.log(data)
-                if (dbPassword.length) {
-                    console.log(dbPassword)
-                    bcrypt.compare(password, dbPassword[0].hash).then(function(result) {
-                        if (result) {
-                            return res.status(200).send({
-                                name: data[0].name,
-                                username: data[0].username,
-                                email: data[0].email
-                            })    
-                        }
-                        return res.status(401).send({message: "Incorrect Password"})
-                    });
-                }
-            })
+    try {
+        const user = await userdb.select('*').where('username', '=', username)
+        // console.log(user)
+        if (!user.length) {
+            // console.log("1")
+            return res.status(401).send({message: 'User does not exist'})
         }
-    })
+        const credentials = await crackdb.select('hash').where('username', '=', username)
+        const validation = await bcrypt.compare(password, credentials[0].hash).then(function(result) {
+            return result
+        })
+        if (!validation) {
+            return res.status(401).send({message: 'Invalid username or password'})
+        }else{
+
+        }
+        if (validation) {
+            return res.status(200).send({
+                name: user[0].name,
+                username: user[0].username,
+                email: user[0].email,
+                token: generateToken({
+                    name: user[0].name,
+                    username: user[0].username,
+                    email: user[0].email
+                })
+            })   
+        }
+}catch (error) {
+        console.log(error)
+        return res.status(500).send(error)
+    }
 })
 
 
