@@ -1,4 +1,4 @@
-import { useState, useContext, lazy, Suspense } from 'react'
+import { useState, useContext, lazy, Suspense, MouseEvent } from 'react'
 import { Link, Route, Routes} from "react-router-dom"
 import HomeScreen from './screens/Home'
 import LogInScreen from './screens/LogIn'
@@ -17,10 +17,14 @@ const RoomsScreen = lazy(()=> import('./screens/Rooms'))
 
 function App() {
   const {state, logOutHandler} = useContext(Store)
+  const hamburgerHandler = (e: MouseEvent<HTMLIFrameElement>) =>{
+    document.querySelector('.navy-small')?.classList.add('visibility')
+  }
+  const hamburgerRemove = ()=>{
+    document.querySelector('.navy-small')?.classList.remove('visibility')
+  }
   return (
     <div className="App">
-
-
       {/* Navbar */}
       <div className="container" style={{maxWidth: '100dvw'}}>
         <div className="nav" style={{margin: 0}}>
@@ -38,7 +42,24 @@ function App() {
                   <Link to={'/login'} className='nav-item'><li ><i style={{paddingRight: '4px'}} className="fa-solid fa-user fa"></i>Login</li></Link>
                 )}
                 {state.user && <Link to={'/login'} onClick={logOutHandler} className='nav-item'><li>Log-out</li></Link>}
-                <i className='fas fa-bars' style={{fontSize: "25px", cursor: "pointer"}}></i>
+                <div id='small-screen'>
+                <i className='fas fa-bars' style={{fontSize: "25px", cursor: "pointer", position: 'relative'}} onClick={hamburgerHandler}></i>
+
+                  <ul className='navy-small'>
+                    <li style={{display: 'flex', justifyContent: 'flex-start', alignItems: 'flex-start', width: '100%', marginBottom: '.5rem', marginTop: '.3rem', marginLeft: ".7rem"}}>
+                      <h3 style={{color: '#000', marginLeft: '.4rem'}} onClick={hamburgerRemove}>X</h3>
+                    </li>
+                  <Link to={"/"} className='nav-item-small'><li>Home</li></Link>
+                  <Link to={"/about"} className='nav-item'><li>About</li></Link>
+                  
+                  <Link to={"/contact"} className='nav-item-small'><li>Contact</li></Link>
+                  {state.user ? ( <Link to={'/profile'} className='nav-item-small'><li ><i  style={{marginRight: '4px'}} className="fa-solid fa-user fa"></i><span>{state.user.name}</span></li></Link>): (
+                    <Link to={'/login'} className='nav-item-small'><li ><i style={{paddingRight: '4px'}} className="fa-solid fa-user fa"></i>Login</li></Link>
+                  )}
+                  {state.user && <Link to={'/login'} onClick={logOutHandler} className='nav-item-small'><li>Log-out</li></Link>}
+                </ul>
+                </div>
+
               </ul>
             </div>
           </nav>

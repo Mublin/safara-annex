@@ -88,7 +88,24 @@ nav{
   justify-content: center;
   flex-direction: row;
 }
+.navy-small{
+  visibility: hidden;
+}
+.fas.fa-bars{
+  visibility: hidden;
+}
+#small-screen{
+  visibility: hidden;
+  display: none;
+}
 @media screen and (max-width: 800px) {
+  #small-screen{
+    visibility: visible;
+    display: contents;
+  }
+  .fas.fa-bars{
+    visibility: visible !important;
+  }
   .nav-item{
     display: none;
     visibility: hidden;
@@ -99,6 +116,44 @@ nav{
     align-items: flex-start;
     flex-direction: column;
   }
+  .navy-small{
+    position: fixed;
+    right: -250px;
+    top: 0;
+    width: 250px;
+    bottom: 0;
+    background-color: var(--color-dominant-font);
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-end !important;
+    justify-content: flex-start !important;
+    z-index: 2000 !important;
+    transition: 1s all;
+  }
+  .navy-small.visibility{
+    right: 0;
+    visibility: visible;
+  }
+  .nav-item-small{
+    color: var(--color-secondary-font);
+    text-decoration: none;
+    width: 50%;    
+  }
+  .nav-item-small li{
+    color: var(--color-secondary-font);
+    list-style-type: none;
+    margin-left: .6rem;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: flex-start;
+  }
+  .nav-item-small i, .nav-item-small span{
+    color: var(--color-secondary-font);
+  }
+  .nav-item-small i, .nav-item-small span, .nav-item-small li:hover{
+    color: var(--color-action);
+  }
+
 }
 ul .nav-item{
   color: var(--color-dominant-font);
