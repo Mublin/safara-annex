@@ -28,7 +28,7 @@ function App() {
       {/* Navbar */}
       <div className="container" style={{maxWidth: '100dvw'}}>
         <div className="nav" style={{margin: 0}}>
-          <nav style={{paddingTop: '0.7rem', position: 'absolute', zIndex: 10, display: 'flex', justifyContent: 'space-between', width: '97dvw'}}>
+          <nav>
             <div className="nav-logo">
               <img src="" alt="logo" />
             </div>
@@ -43,7 +43,7 @@ function App() {
                 )}
                 {state.user && <Link to={'/login'} onClick={logOutHandler} className='nav-item'><li>Log-out</li></Link>}
                 <div id='small-screen'>
-                <i className='fas fa-bars' style={{fontSize: "25px", cursor: "pointer", position: 'relative'}} onClick={hamburgerHandler}></i>
+                <i className='fas fa-bars' style={{fontSize: "25px", cursor: "pointer", position: 'relative'}} onClick={hamburgerHandler}>pp</i>
 
                   <ul className='navy-small'>
                     <li style={{display: 'flex', justifyContent: 'flex-start', alignItems: 'flex-start', width: '100%', marginBottom: '.5rem', marginTop: '.3rem', marginLeft: ".7rem"}}>

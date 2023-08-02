@@ -180,6 +180,14 @@ label input{
   justify-content: space-around; 
   align-items: center;
 }
+.container nav{
+  padding-top: 0.7rem; 
+  position: absolute; 
+  z-index: 10; 
+  display: flex !important; 
+  justify-content: space-between !important; 
+  width: 98dvw;
+}
 @media screen and (max-width: 650px) {
   .explore-design{
     display: none !important;
@@ -188,6 +196,7 @@ label input{
     display: flex;
     align-items: center;
     justify-content: center;
+    height: 96dvh !important;
   }
 }
 /* services */
