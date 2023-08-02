@@ -13,7 +13,19 @@ const db = knex({
 
 const roomRoute = express.Router()
 
-
+roomRoute.get('/detailroom/:size/:roomId', async (req, res)=>{
+    const {roomId} = req.params
+    const {size} = req.params
+    const rooms = db('rooms')
+    rooms.select('*').where('size', '=', size)
+    rooms.select('*').where('number', '=', roomId)
+    .then(data=>{
+        if (data.length) {
+            return res.status(200).send(data[0])
+        }
+        return res.status(401).send({message: "room is not available"})
+    }).catch(err=> res.status(500).send({message: "server error"}))
+})
 roomRoute.get('/:id', async (req, res)=>{
     const {id} = req.params
     const { query} = req;

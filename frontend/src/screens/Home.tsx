@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom'
 
 const HomeScreen = () => {
     const {state} = useContext(Store)
-    console.log(state)
   return (
     <div>
         <div className="annex-image" style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around'}}>

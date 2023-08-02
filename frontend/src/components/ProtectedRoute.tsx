@@ -5,7 +5,7 @@ import { Navigate, useNavigate } from 'react-router-dom'
 const ProtectedRoute = ({ children }: any) => {
     const {state} = useContext(Store)
   return (
-    state.user && state.user.id ? children : <Navigate to={'/login'}/>
+    state.user && state.user.username ? children : <Navigate to={'/login'}/>
   )
 }
 

@@ -1,21 +1,24 @@
 import React, { useState, ChangeEvent, MouseEvent, useContext, useEffect } from 'react'
 import { Store } from '../Store'
-import { Link, Navigate, useNavigate } from 'react-router-dom'
+import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom'
 
 const LogInScreen = () => {
   const { state, loginHandler} = useContext(Store)
   const {user} = state
+  const {search} = useLocation()
+  const redirectUrl = new URLSearchParams(search).get('redirect')
+  const redirect = redirectUrl || '/' 
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const navigate = useNavigate()
-  const submitHandler =  (e: MouseEvent<HTMLFormElement>)=>{
+  const submitHandler = async (e: MouseEvent<HTMLFormElement>)=>{
     e.preventDefault();
-    loginHandler(username.toLowerCase(), password);
+    await loginHandler(username.toLowerCase(), password, redirect);
   }
   useEffect(()=>{
-    console.log(state)
+    // console.log(state)
     if (state.user) {
-      navigate('/')
+      navigate(redirect)
     }
   },[navigate, state.user])
   return (
@@ -28,7 +31,7 @@ const LogInScreen = () => {
           <input type="password" value={password} onChange={(e: ChangeEvent<HTMLInputElement>)=> setPassword  (e.target.value)} />
         </label>
         <div>
-          <p>new user?</p> <span><Link to={'/register'}>Sign Up Here</Link></span>
+          <p>new user?</p> <span><Link to={'/register?redirect=' + redirect}>Sign Up Here</Link></span>
         </div>
         <button type="submit">Log-in</button>
       </form>

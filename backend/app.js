@@ -28,10 +28,10 @@ app.use(express.urlencoded({extended: false}))
 app.use(`/api/users`, userRoute)
 app.use(`/api/rooms`, roomRoute)
 
-// app.use(express.static(path.join(__dirname, '../frontend/dist')))
-// app.get('*', (req,res)=>
-//     res.sendFile(path.join(__dirname, '../frontend/dist/index.html'))
-// )
+app.use(express.static(path.join(__dirname, '../frontend/dist')))
+app.get('*', (req,res)=>
+    res.sendFile(path.join(__dirname, '../frontend/dist/index.html'))
+)
 const port = process.env.PORT || 5773
 app.listen(port, ()=>{
     console.log(`app is working at port ${port} siu`)

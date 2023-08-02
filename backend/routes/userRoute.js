@@ -60,7 +60,7 @@ userRoute.post('/signin', async (req, res)=>{
     const {username, password} = req.body;
     try {
         const user = await userdb.select('*').where('username', '=', username)
-        // console.log(user)
+        console.log(user)
         if (!user.length) {
             // console.log("1")
             return res.status(401).send({message: 'User does not exist'})

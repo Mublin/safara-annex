@@ -6,10 +6,12 @@ import RegisterScreen from './screens/Register'
 import AboutScreen from './screens/About'
 import { Store } from './Store'
 import ProtectedRoute from './components/ProtectedRoute'
+import Spinner from './components/Spinner'
 // import EventScreen from './screens/Even'
 const EventScreen = lazy(()=> import('./screens/Event'))
-import HallScreen from './screens/Hall'
-import RoomListScreen from './screens/RoomList'
+const HallScreen = lazy(()=> import('./screens/Hall'))
+const RoomListScreen = lazy(()=> import('./screens/RoomList'))
+const DetailRoom = lazy(()=>  import('./screens/DetailRoom'))
 const RoomsScreen = lazy(()=> import('./screens/Rooms'))
 
 
@@ -53,10 +55,11 @@ function App() {
               <Route path='/login' element={<LogInScreen />}/>
               <Route path='/register' element={<RegisterScreen />}/>
               <Route path='/about' element={<ProtectedRoute><AboutScreen /></ProtectedRoute>} />
-              <Route path='/choose' element={<Suspense fallback='loading'> <EventScreen /></Suspense>} />
-              <Route path='/bookhall' element={<HallScreen />} />
-              <Route path='/rooms' element={<Suspense fallback={'loading'}><RoomListScreen /></Suspense>} />
-              <Route path='/rooms/:size' element={<Suspense fallback={<>loading...</>}><RoomsScreen /></Suspense>} />
+              <Route path='/choose' element={<Suspense fallback={<div style={{width: '100dvw', height: '100dvh', display: 'flex', alignItems: 'center', justifyContent: 'center'}}><Spinner /></div>}><EventScreen /></Suspense>} />
+              <Route path='/bookhall' element={<Suspense fallback={<div style={{width: '100dvw', height: '100dvh', display: 'flex', alignItems: 'center', justifyContent: 'center'}}><Spinner /></div>}><HallScreen /></Suspense>} />
+              <Route path='/rooms' element={<Suspense fallback={<div style={{width: '100dvw', height: '100dvh', display: 'flex', alignItems: 'center', justifyContent: 'center'}}><Spinner /></div>}><RoomListScreen /></Suspense>} />
+              <Route path='/rooms/:size' element={<Suspense fallback={<div style={{width: '100dvw', height: '100dvh', display: 'flex', alignItems: 'center', justifyContent: 'center'}}><Spinner /></div>}><RoomsScreen /></Suspense>} />
+              <Route path='/rooms/:size/:roomId' element={<Suspense fallback={<div style={{width: '100dvw', height: '100dvh', display: 'flex', alignItems: 'center', justifyContent: 'center'}}><Spinner /></div>}><DetailRoom /></Suspense>} />
               <Route path='/*' element={<HomeScreen />} />
             </Routes>
           </main>

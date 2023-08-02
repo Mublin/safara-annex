@@ -63,7 +63,7 @@ const useGlobalStateHook = (initState : InitialStateType) =>{
     const navigate = useNavigate()
     const [state, dispatch] = useReducer(reducer, initState)
 
-    const loginHandler = async (username: string, password: string): Promise<void> =>{
+    const loginHandler = async (username: string, password: string, redirect : string): Promise<void> =>{
         // console.log(username, password)
         try {
             dispatch({type: REDUCER_ACTION_TYPE.LogInRequest, payload: undefined})
@@ -83,7 +83,7 @@ const useGlobalStateHook = (initState : InitialStateType) =>{
                     }
                 })
                 localStorage.setItem('userInfo', JSON.stringify(data))
-                navigate('/') 
+                navigate(redirect) 
             }
                
         } catch (error) {
@@ -97,7 +97,7 @@ const useGlobalStateHook = (initState : InitialStateType) =>{
 
 
 
-    const registerHandler = async (name:string, username: string, password: string, email: string): Promise<void> =>{
+    const registerHandler = async (name:string, username: string, password: string, email: string, redirect: string): Promise<void> =>{
         console.log(name, username, password, email)
         try {
             dispatch({type: REDUCER_ACTION_TYPE.RegisterRequest, payload: undefined})
@@ -122,8 +122,9 @@ const useGlobalStateHook = (initState : InitialStateType) =>{
                         email
                     }
                 })
+                console.log(data)
                 localStorage.setItem('userInfo', JSON.stringify(data))
-                navigate('/')   
+                navigate(redirect)   
             }
             
         } catch (error) {
@@ -157,8 +158,8 @@ const useGlobalStateHook = (initState : InitialStateType) =>{
 type useGlobalStateHookType = ReturnType <typeof useGlobalStateHook>
 const initialContextState :useGlobalStateHookType = {
     state: initialState,
-    loginHandler: async (username: string, password: string) => {},
-    registerHandler: async (name: string, username: string, password: string, email: string) => {},
+    loginHandler: async (username: string, password: string, redirect: string) => {},
+    registerHandler: async (name: string, username: string, password: string, email: string, redirect: string) => {},
     logOutHandler: () => {},
 }
 
