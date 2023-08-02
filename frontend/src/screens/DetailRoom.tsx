@@ -33,13 +33,32 @@ const DetailRoom = () => {
     }
     fetchData()
   }, [roomId])
+
+
   const bookingHandler = async (data: Room) : Promise<void> => {
-    if (!user) {
-      navigate(`/login?redirect=${pathname}`)
+    if(!user) {
+      navigate('/login?redirect=' + pathname)
+      return
     }
+    try {
+      const dataPaystack = await axios.post(`http://localhost:4500/api/payment/initialization`, {
+        email: user?.email,
+        amount : data.price * 100
+        }, {
+          headers : {
+            Authorization: `Bearer ${user?.token}`
+          }
+      })
+    window.location.href = dataPaystack.data.data.authorization_url
+      
+    } catch (error) {
+      console.log(error)
+      alert(errorHandle(error))
+    }
+    
   }
   return (
-    <section style={{marginTop:'4rem', minHeight: "85dvh", display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100dvw', flexDirection: 'column'}}>
+    <section style={{marginTop:'4rem', minHeight: "85dvh", display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', flexDirection: 'column'}}>
         <div  style={{ margin: '2rem 0', width: '100%',display: 'flex', alignItems:'center', justifyContent: 'center', flexWrap: 'wrap'}}>
           {loading ? <Spinner /> : error ? <div>{error}</div> : room && <div key={room.id} className={room.availability ? 'card roomss' : 'card roomss availabl'}>
                         {/* <img src={} loading='lazy' alt="" style={{ width: '100%', height: '60%'}}  /> */}

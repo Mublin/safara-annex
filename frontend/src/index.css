@@ -70,6 +70,10 @@ h2 span{
 80% {background-position: 0 calc(4*100%/4) ,0 calc(3*100%/4) ,0 calc(2*100%/4) ,0 calc(1*100%/4) ,0 calc(-2*100%/4)}
 100%{background-position: 0 calc(4*100%/4) ,0 calc(3*100%/4) ,0 calc(2*100%/4) ,0 calc(1*100%/4) ,0 calc(0*100%/4)}
 }
+
+.container{
+  max-width: 100vw;
+}
 /* NavBar */
 
 
@@ -113,8 +117,23 @@ label input{
 .annex-image{
   background-image: url('./pic.jpg');
   background-size: cover;
-  width: 100dvw;
+  background-position: center;
+  background-repeat: no-repeat;
   height: 90dvh;
+  display: flex; 
+  flex-wrap: wrap; 
+  justify-content: space-around; 
+  align-items: center;
+}
+@media screen and (max-width: 650px) {
+  .explore-design{
+    display: none !important;
+  }
+  .annex-image{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }
 /* services */
 .annex-details{

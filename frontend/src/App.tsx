@@ -22,9 +22,9 @@ function App() {
 
 
       {/* Navbar */}
-      <div className="container" >
+      <div className="container" style={{maxWidth: '100dvw'}}>
         <div className="nav" style={{margin: 0}}>
-          <nav style={{paddingTop: '0.7rem', position: 'absolute', zIndex: 10, display: 'flex', justifyContent: 'space-between', width: '100dvw'}}>
+          <nav style={{paddingTop: '0.7rem', position: 'absolute', zIndex: 10, display: 'flex', justifyContent: 'space-between', width: '97dvw'}}>
             <div className="nav-logo">
               <img src="" alt="logo" />
             </div>
@@ -48,8 +48,8 @@ function App() {
 
 
         {/* main */}
-        <div className="main">
-          <main>
+        <div className="main" style={{width: '100%'}}>
+          <main style={{width: '100%'}}>
             <Routes>
               <Route path='/' element={<HomeScreen />}/>
               <Route path='/login' element={<LogInScreen />}/>

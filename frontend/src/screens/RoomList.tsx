@@ -16,7 +16,7 @@ export type Room ={
 }
 const RoomListScreen = () => {
   return (
-    <section style={{marginTop:'4rem', minHeight: "85dvh", display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', width: '100dvw'}}>
+    <section style={{marginTop:'4rem', minHeight: "85dvh", display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', width: '100%'}}>
         <div className="section-title" style={{ marginBottom: '1rem'}}>
             <h2>SELECT <span>ROOM TYPE</span></h2>
         </div>

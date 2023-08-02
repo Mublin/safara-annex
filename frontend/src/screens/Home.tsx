@@ -7,9 +7,9 @@ import { Link } from 'react-router-dom'
 const HomeScreen = () => {
     const {state} = useContext(Store)
   return (
-    <div>
-        <div className="annex-image" style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around'}}>
-            <div className="explore" style={{zIndex: 50}}>
+    <div style={{width: '100%', height: '100%'}}>
+        <div className="annex-image">
+            <div className="explore" style={{zIndex: 50, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
                 <Link to={'/choose'} className='link-action'><button>Book Us Now</button></Link>
             </div>
             <div className="explore-design"></div>

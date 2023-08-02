@@ -4,7 +4,7 @@ import reactSvg from '../react.svg'
 
 const HallScreen = () => {
   return (
-    <section style={{marginTop:'4rem', minHeight: "85dvh", display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100dvw'}}>
+    <section style={{marginTop:'4rem', minHeight: "85dvh", display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%'}}>
         <div className="card" style={{minWidth:  '295px', display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100dvw', flexDirection: 'column'}}>
                     <img src={reactSvg} loading='lazy' alt="" width='365px' height='300px' />
                     <div className="services-details" style={{ display: 'flex', alignItems: 'center' , justifyContent: 'center', flexDirection: 'column'}}>

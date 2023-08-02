@@ -49,7 +49,7 @@ const RoomsScreen = () => {
         navigate(`/rooms/${roomDetail.size}/${roomDetail.number}`)
     }
   return (
-    <section style={{marginTop:'4rem', minHeight: "85dvh", display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100dvw', flexDirection: 'column'}}>
+    <section style={{marginTop:'4rem', minHeight: "85dvh", display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', flexDirection: 'column'}}>
         <div  style={{ margin: '2rem 0', width: '100%',display: 'flex', alignItems:'center', justifyContent: 'flex-end', flexWrap: 'wrap'}}>
             <p style={{color: '#fff', marginRight: '1rem'}}>filter by: </p>
             <div style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'flex-end'}}>

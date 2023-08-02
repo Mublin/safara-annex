@@ -8,7 +8,7 @@ import oip4 from  '../rooms/download.jfif'
 
 const EventScreen = () => {
   return (
-    <div style={{marginTop:'4rem', minHeight: "85dvh", width: '100dvw', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column'}}>
+    <div style={{marginTop:'4rem', minHeight: "85dvh", width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column'}}>
         <h2 style={{margin: '1rem'}}>Choose Your <span>Service</span></h2>
         <div className="items">
                 <Link to={'/bookhall'} style={{textDecoration: 'none'}}>
